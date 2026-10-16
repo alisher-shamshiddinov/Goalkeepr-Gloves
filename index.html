@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLOVE PRO — Original Darvozabonlar Qo'lqoplari Do'koni</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            display: ['Rajdhani', 'sans-serif'],
+          },
+          colors: {
+            pitch: {
+              900: '#060a0f',
+              850: '#0b1118',
+              800: '#111923',
+              700: '#1a2432',
+              600: '#263447',
+            },
+            glow: {
+              neon: '#00ff87',
+              cyan: '#00e5ff',
+              gold: '#ffd000',
+              orange: '#ff5e00',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-pitch-900 text-slate-100 font-sans min-h-screen selection:bg-glow-neon selection:text-black">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-black py-2 px-4 text-xs md:text-sm font-bold text-center tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/10">
+    <span class="inline-block w-2 h-2 rounded-full bg-black animate-ping"></span>
+    <span>100% ORIGINAL DARVOZABON QO'LQOPLARI — Germaniya, Avstriya va AQSHdan to'g'ridan-to'g'ri keltirilgan!</span>
+    <span class="hidden md:inline bg-black/20 text-black px-2 py-0.5 rounded text-xs ml-2 font-black">O'ZBEKISTON BO'YLAB BEPUL YETKAZIB BERISH</span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-pitch-900/85 border-b border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-glow-neon via-glow-cyan to-blue-500 p-0.5 shadow-lg shadow-glow-neon/20 group-hover:scale-105 transition-transform duration-300">
+          <div class="w-full h-full bg-pitch-900 rounded-[10px] flex items-center justify-center">
+            <i data-lucide="shield" class="w-6 h-6 text-glow-neon group-hover:rotate-12 transition-transform"></i>
+          </div>
+        </div>
+        <div>
+          <div class="font-display text-2xl font-black tracking-wider leading-none flex items-center gap-1.5">
+            <span class="text-white">GLOVE</span>
+            <span class="text-glow-neon">PRO</span>
+            <span class="text-xs bg-glow-cyan/15 text-glow-cyan border border-glow-cyan/30 px-1.5 py-0.5 rounded font-mono font-semibold">100% ORIGINAL</span>
+          </div>
+          <span class="text-[11px] text-slate-400 font-medium tracking-widest uppercase">Goalkeeper Equipment</span>
+        </div>
+      </a>
+
+      <!-- Search bar -->
+      <div class="hidden md:flex flex-1 max-w-md mx-6">
+        <div class="relative w-full">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Qo'lqop nomi, lateks turi yoki mato bo'yicha qidiring..." 
+            class="w-full bg-pitch-800/90 border border-slate-700/80 text-sm rounded-full pl-11 pr-4 py-2.5 text-slate-200 placeholder-slate-400 focus:outline-none focus:border-glow-neon focus:ring-1 focus:ring-glow-neon transition-all"
+          >
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-4 top-3.5"></i>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Interactive Hand Preview Shortcut -->
+        <button id="navHandSimBtn" class="hidden lg:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-glow-neon/10 hover:bg-glow-neon/20 border border-glow-neon/30 text-glow-neon text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-sm shadow-glow-neon/10">
+          <i data-lucide="hand" class="w-4 h-4"></i>
+          <span>Qo'lda Ko'rish Simulyatori</span>
+        </button>
+
+        <!-- Size Guide Button -->
+        <button id="sizeGuideBtn" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-pitch-800 hover:bg-pitch-700 border border-slate-700 text-xs text-slate-300 font-semibold transition-colors">
+          <i data-lucide="ruler" class="w-4 h-4 text-glow-cyan"></i>
+          <span class="hidden sm:inline">O'lcham Aniqlash</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button id="cartBtn" class="relative p-2.5 rounded-xl bg-pitch-800 hover:bg-pitch-700 border border-slate-700 text-white transition-all hover:border-glow-neon group">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-200 group-hover:text-glow-neon transition-colors"></i>
+          <span id="cartCount" class="absolute -top-1.5 -right-1.5 bg-glow-neon text-pitch-900 font-black text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg shadow-glow-neon/40 transform transition-transform scale-100">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-14 lg:py-20 border-b border-slate-800 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pitch-800 via-pitch-900 to-black">
+    <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-glow-neon/10 via-glow-cyan/15 to-blue-500/10 blur-3xl pointer-events-none rounded-full"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-semibold text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-glow-neon"></span>
+            6 ta Jahon Giganti — 100% Kafolatlangan Asl Nusxa
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
+            HAR BIR ZARBA VA SEHVANI <span class="bg-gradient-to-r from-glow-neon via-glow-cyan to-white bg-clip-text text-transparent">ISHLIK BILAN JILOVLANG</span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            Faqat eng ishonchli brendlar: <strong class="text-white">T1TAN, Uhlsport, KEEPERsport, Spire, Nike va Adidas</strong>. Har bir qo'lqopning nemis lateksi, anatomik matosi va interaktiv <span class="text-glow-neon font-semibold">"Qo'lda Ko'rish"</span> texnologiyasi bilan tanishing.
+          </p>
+
+          <!-- Badges / Pillars -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
+            <div class="bg-pitch-800/60 border border-slate-800 rounded-xl p-3 flex items-start gap-2.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-glow-neon">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white">German Contact Latex</h4>
+                <p class="text-[11px] text-slate-400">4mm Pro tutilish darajasi</p>
+              </div>
+            </div>
+
+            <div class="bg-pitch-800/60 border border-slate-800 rounded-xl p-3 flex items-start gap-2.5">
+              <div class="p-2 rounded-lg bg-cyan-500/10 text-glow-cyan">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white">Nafas Oluvchi Mato</h4>
+                <p class="text-[11px] text-slate-400">Neoprene & Mechano 2.0</p>
+              </div>
+            </div>
+
+            <div class="bg-pitch-800/60 border border-slate-800 rounded-xl p-3 col-span-2 sm:col-span-1 flex items-start gap-2.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-glow-gold">
+                <i data-lucide="hand" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white">Qo'lda Ko'rish</h4>
+                <p class="text-[11px] text-slate-400">360° Fit & Grip sinovi</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3">
+            <a href="#catalog" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-glow-neon to-emerald-500 text-pitch-900 font-black text-sm tracking-wide uppercase hover:shadow-lg hover:shadow-glow-neon/25 transition-all hover:scale-105 flex items-center gap-2">
+              <span>Katalogni Ko'rish</span>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+
+            <button onclick="openHandSimulator(1)" class="px-6 py-3.5 rounded-xl bg-pitch-800 hover:bg-pitch-700 border border-slate-700 text-white font-bold text-sm tracking-wide transition-all hover:border-glow-cyan flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-glow-cyan"></i>
+              <span>Top Modelni Qo'lda Sinash</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Hero Featured Interactive Glove Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-sm rounded-3xl p-1 bg-gradient-to-b from-glow-neon/40 via-slate-800 to-transparent shadow-2xl shadow-glow-neon/10">
+            <div class="bg-pitch-850 rounded-[22px] p-6 text-center space-y-4 relative overflow-hidden">
+              <div class="absolute -right-12 -top-12 w-36 h-36 bg-glow-neon/15 rounded-full blur-2xl"></div>
+
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded bg-glow-neon/10 text-glow-neon text-xs font-mono font-bold uppercase">Yilning Eng Kuchli Modeli</span>
+                <span class="text-xs text-slate-400 font-mono">T1TAN BEAST 3.0</span>
+              </div>
+
+              <!-- Interactive Hand Graphic Preview inside Hero -->
+              <div id="heroGloveVisual" class="py-2 cursor-pointer transform hover:scale-105 transition-transform" onclick="openHandSimulator(1)">
+                <!-- SVG rendered in js -->
+                <div class="relative h-64 flex items-center justify-center">
+                  <svg id="heroGloveSvg" viewBox="0 0 240 300" class="h-full drop-shadow-[0_15px_25px_rgba(0,255,135,0.25)]">
+                    <!-- Dynamic rendering in JS -->
+                  </svg>
+                </div>
+              </div>
+
+              <div class="text-left space-y-2 bg-pitch-900/80 p-3 rounded-xl border border-slate-800">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-slate-400">Lateks:</span>
+                  <span class="text-glow-neon font-bold">4mm German Gecko Grip</span>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-slate-400">Mato:</span>
+                  <span class="text-slate-200 font-semibold">Mechano 2.0 Ultra-Breathable</span>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-slate-400">Kesimi (Cut):</span>
+                  <span class="text-slate-200 font-semibold">Negative Cut (Zich fiksatsiya)</span>
+                </div>
+              </div>
+
+              <button onclick="openHandSimulator(1)" class="w-full py-2.5 rounded-xl bg-pitch-800 hover:bg-glow-neon hover:text-black border border-slate-700 hover:border-glow-neon text-xs font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-2">
+                <i data-lucide="hand" class="w-4 h-4"></i>
+                <span>Qo'lda Qanday Turishini Ko'rish (Simulyator)</span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 Exclusive Brands Strip -->
+  <section class="py-8 bg-pitch-850/60 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">
+        Faqat Original 6 Brend — Qalbaki mahsulotlarga murosasizmiz
+      </p>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        
+        <button onclick="filterByBrand('T1TAN')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-glow-neon/50 transition-all text-center group">
+          <div class="font-display font-black text-xl text-white group-hover:text-glow-neon transition-colors">T1TAN</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Germaniya</span>
+        </button>
+
+        <button onclick="filterByBrand('Uhlsport')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-glow-cyan/50 transition-all text-center group">
+          <div class="font-display font-black text-xl text-white group-hover:text-glow-cyan transition-colors">UHLSPORT</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Supergrip+ Foam</span>
+        </button>
+
+        <button onclick="filterByBrand('KEEPERsport')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-amber-400/50 transition-all text-center group">
+          <div class="font-display font-black text-lg text-white group-hover:text-amber-400 transition-colors">KEEPERSPORT</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Avstriya Pro</span>
+        </button>
+
+        <button onclick="filterByBrand('Spire')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-emerald-400/50 transition-all text-center group">
+          <div class="font-display font-black text-xl text-white group-hover:text-emerald-400 transition-colors">SPIRE</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Contact Latex</span>
+        </button>
+
+        <button onclick="filterByBrand('Nike')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-rose-400/50 transition-all text-center group">
+          <div class="font-display font-black text-xl text-white group-hover:text-rose-400 transition-colors">NIKE</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Vapor Grip3</span>
+        </button>
+
+        <button onclick="filterByBrand('Adidas')" class="brand-chip p-3 rounded-2xl bg-pitch-800/60 hover:bg-pitch-700 border border-slate-800 hover:border-blue-400/50 transition-all text-center group">
+          <div class="font-display font-black text-xl text-white group-hover:text-blue-400 transition-colors">ADIDAS</div>
+          <span class="text-[10px] text-slate-400 block font-medium">Predator URG 2.0</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Hand Visualizer Showcase Section -->
+  <section class="py-12 bg-pitch-850 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-pitch-900 via-pitch-800 to-pitch-900 rounded-3xl border border-slate-700 p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-glow-neon/15 text-glow-neon text-xs font-bold uppercase tracking-wider">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              Eksklyuziv Funksiya
+            </span>
+            <h2 class="font-display text-3xl sm:text-4xl font-black text-white">
+              QO'LQA QANDAY TURISHINI REAL VAQTDA TEKSHIRING
+            </h2>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Endi o'lchami to'g'ri keladimi, kaftga qanday o'tiradi deb xavotir olmang! Har bir modelning:
+            </p>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-glow-neon"></i>
+                <span><strong>Oldi va orqasi:</strong> Lateks qatlami hamda orqa nafas oluvchi matosi</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-glow-neon"></i>
+                <span><strong>Harakat simulyatsiyasi:</strong> Kaftni ochish (Catch) va Musht qilish (Punch Zone)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-glow-neon"></i>
+                <span><strong>O'lcham moslashuvi:</strong> 7 dan 11 gacha bo'lgan kaft proporsiyalari</span>
+              </li>
+            </ul>
+
+            <div class="pt-2">
+              <button onclick="openHandSimulator(activeFeaturedGloveId)" class="px-6 py-3 rounded-xl bg-glow-neon text-pitch-900 font-black text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all flex items-center gap-2 shadow-lg shadow-glow-neon/20">
+                <i data-lucide="hand" class="w-4 h-4"></i>
+                <span>Interaktiv Simulyatorni Ochish</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Inline Hand Mini-Sandbox -->
+          <div class="lg:col-span-7 bg-pitch-900 rounded-2xl p-5 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
+              <div class="text-xs">
+                <span class="text-slate-400">Ko'rsatilayotgan qo'lqop: </span>
+                <span id="quickSelectName" class="text-white font-bold">T1TAN Beast 3.0</span>
+              </div>
+              
+              <!-- View Angle Switcher -->
+              <div class="flex bg-pitch-800 p-1 rounded-xl border border-slate-700 text-xs">
+                <button onclick="setSandboxView('palm')" id="btnViewPalm" class="px-3 py-1.5 rounded-lg bg-glow-neon text-pitch-900 font-bold transition-all">
+                  Oldi (Lateks Kaft)
+                </button>
+                <button onclick="setSandboxView('back')" id="btnViewBack" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-medium transition-all">
+                  Orqasi (Mato & Silikon)
+                </button>
+                <button onclick="setSandboxView('ball')" id="btnViewBall" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-medium transition-all">
+                  Koptok ushlash
+                </button>
+              </div>
+            </div>
+
+            <!-- SVG Container -->
+            <div class="relative h-72 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pitch-800/80 to-pitch-900 rounded-xl overflow-hidden">
+              <div id="sandboxCanvas" class="w-full h-full flex items-center justify-center">
+                <!-- Injected via JS -->
+              </div>
+
+              <!-- Pose Control buttons -->
+              <div class="absolute bottom-3 left-3 flex gap-2">
+                <button onclick="triggerSandboxPose('open')" id="btnPoseOpen" class="px-2.5 py-1 rounded bg-pitch-800/90 border border-slate-700 text-[11px] text-white hover:border-glow-neon font-semibold transition-all">
+                  🖐️ Ochiq kaft
+                </button>
+                <button onclick="triggerSandboxPose('fist')" id="btnPoseFist" class="px-2.5 py-1 rounded bg-pitch-800/90 border border-slate-700 text-[11px] text-slate-300 hover:text-white font-semibold transition-all">
+                  ✊ Musht (Punch)
+                </button>
+              </div>
+
+              <!-- Fabric / Latex Callout -->
+              <div id="sandboxCallout" class="absolute top-3 right-3 bg-pitch-900/90 backdrop-blur border border-glow-neon/40 text-[11px] px-3 py-1.5 rounded-lg text-glow-neon font-mono shadow-md">
+                Latex: 4mm German Gecko Grip
+              </div>
+            </div>
+
+            <!-- Quick Glove Switcher Pills -->
+            <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-1 text-xs">
+              <span class="text-slate-400 text-[11px] whitespace-nowrap">Boshqa brendni tanlang:</span>
+              <button onclick="switchSandboxGlove(1)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">T1TAN Beast</button>
+              <button onclick="switchSandboxGlove(3)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">Uhlsport Supergrip+</button>
+              <button onclick="switchSandboxGlove(5)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">KEEPERsport Varan7</button>
+              <button onclick="switchSandboxGlove(7)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">Spire Apex</button>
+              <button onclick="switchSandboxGlove(9)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">Nike Vapor Grip3</button>
+              <button onclick="switchSandboxGlove(11)" class="px-2.5 py-1 rounded-lg bg-pitch-800 hover:bg-slate-700 text-white whitespace-nowrap border border-slate-700 text-[11px]">Adidas Predator</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog Section -->
+  <section id="catalog" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Title & Filter Controls -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-glow-neon text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          Original Mahsulotlar Katalogi
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-white">
+          DARVOZABON QO'LQOPLARI
+        </h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Har bir mahsulotda lateks, mato va qo'lda turish simulyatori mavjud
+        </p>
+      </div>
+
+      <!-- Filters container -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <!-- Brand Filter dropdown / pills -->
+        <div class="flex items-center bg-pitch-800 p-1 rounded-xl border border-slate-700">
+          <button onclick="filterByBrand('all')" id="filter-all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-glow-neon text-pitch-900 transition-all">Barchasi</button>
+          <button onclick="filterByBrand('T1TAN')" id="filter-T1TAN" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">T1TAN</button>
+          <button onclick="filterByBrand('Uhlsport')" id="filter-Uhlsport" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">Uhlsport</button>
+          <button onclick="filterByBrand('KEEPERsport')" id="filter-KEEPERsport" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">KEEPERsport</button>
+          <button onclick="filterByBrand('Spire')" id="filter-Spire" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">Spire</button>
+          <button onclick="filterByBrand('Nike')" id="filter-Nike" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">Nike</button>
+          <button onclick="filterByBrand('Adidas')" id="filter-Adidas" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">Adidas</button>
+        </div>
+
+        <!-- Cut Filter -->
+        <select id="cutFilter" onchange="applyFilters()" class="bg-pitch-800 border border-slate-700 text-xs rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-glow-neon">
+          <option value="all">Barcha Kesimlar (Cut)</option>
+          <option value="Negative Cut">Negative Cut</option>
+          <option value="Hybrid Cut">Hybrid Cut</option>
+          <option value="Reflex Cut">Reflex Cut</option>
+          <option value="Grip3 Cut">Grip3 Cut</option>
+        </select>
+
+        <!-- Weather Filter -->
+        <select id="weatherFilter" onchange="applyFilters()" class="bg-pitch-800 border border-slate-700 text-xs rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-glow-neon">
+          <option value="all">Ob-havo: Barchasi</option>
+          <option value="Barcha ob-havo">Barcha ob-havo (All-Weather)</option>
+          <option value="Quruq / Sun'iy maydon">Quruq / Sun'iy maydon</option>
+          <option value="Yomg'irli / Aqua">Yomg'irli / Aqua</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Gloves Grid -->
+    <div id="glovesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden text-center py-16 space-y-3">
+      <i data-lucide="package-search" class="w-12 h-12 mx-auto text-slate-600"></i>
+      <h3 class="text-lg font-bold text-slate-300">Qidiruv bo'yicha qo'lqop topilmadi</h3>
+      <p class="text-sm text-slate-500">Filtrlarni o'zgartirib ko'ring yoki barcha brendlarni tanlang.</p>
+      <button onclick="filterByBrand('all')" class="mt-2 px-4 py-2 bg-pitch-800 rounded-xl text-glow-neon text-xs font-bold border border-slate-700">Filtrlarni tozalash</button>
+    </div>
+
+  </section>
+
+  <!-- Tech Deep Dive: Latex & Fabric Guide Section -->
+  <section class="py-16 bg-pitch-850/80 border-t border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-mono font-bold uppercase text-glow-cyan tracking-widest">Darvozabonlar Ensiklopediyasi</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-white mt-2">
+          LATEKS VA MATO: ORIGINAL VA ARZON NUSXA FARQI
+        </h2>
+        <p class="text-slate-400 text-sm mt-3">
+          Biz faqat haqiqiy professional formulalardan foydalanamiz. Nega aynan professional lateks va to'g'ri tanlangan mato zarur?
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Feature 1: Latex -->
+        <div class="bg-pitch-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group hover:border-glow-neon/50 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-glow-neon/10 text-glow-neon flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">4mm German Contact Latex</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Germaniyaning Lahr laboratoriyasida ishlab chiqarilgan yopishqoq tabiiy kauchuk. Koptokni magnitdek tortadi va 120 km/soat tezlikdagi zarbalarni 100% amortizatsiya qiladi.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-[11px] text-slate-400">
+            <span>Ushlash (Grip):</span>
+            <span class="text-glow-neon font-bold">10 / 10</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: Supergrip+ -->
+        <div class="bg-pitch-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group hover:border-glow-cyan/50 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-glow-cyan/10 text-glow-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Uhlsport Supergrip+ & URG</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Lateks ichiga qora zarrachalar kiritilgan. Bu koptok bilan ishqalanish maydonini 20% oshiradi. Bundesliga va Chempionlar Ligasidagi darvozabonlar aynan shu lateksda o'ynaydi.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-[11px] text-slate-400">
+            <span>Zarba qaytarish:</span>
+            <span class="text-glow-cyan font-bold">9.8 / 10</span>
+          </div>
+        </div>
+
+        <!-- Feature 3: Breathable Fabric -->
+        <div class="bg-pitch-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group hover:border-amber-400/50 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <i data-lucide="wind" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Mechano 2.0 & Neoprene</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Qo'l terlamaydi. Ko'p qatlamli mikro-teshikli mato tana haroratini me'yorda tutadi. Qo'l mushaklariga ikkinchi teri (second skin) kabi yopishib, to'liq erkinlik beradi.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-[11px] text-slate-400">
+            <span>Nafas olish:</span>
+            <span class="text-amber-400 font-bold">A+ Maximum</span>
+          </div>
+        </div>
+
+        <!-- Feature 4: Cut Styles -->
+        <div class="bg-pitch-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden group hover:border-rose-400/50 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-rose-400/10 text-rose-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <i data-lucide="scissors" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Negative & Hybrid Cut</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Ichki tikuv (Negative Cut) orqali koptok bilan qo'l orasida ortiqcha bo'shliq qolmaydi. Bosh barmog'ining qo'shimcha lateks qoplamasi (Thumb Wrap) esa xatolarni oldini oladi.
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between text-[11px] text-slate-400">
+            <span>Qo'lga yopishish:</span>
+            <span class="text-rose-400 font-bold">100% Fit</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Hand Simulator Modal -->
+  <div id="handModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-pitch-900 border border-slate-700 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative my-auto">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-pitch-850">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-xl bg-glow-neon/10 text-glow-neon">
+            <i data-lucide="hand" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-display text-xl sm:text-2xl font-black text-white" id="modalGloveTitle">T1TAN Beast 3.0 — Qo'lda Ko'rish Simulyatori</h3>
+            <p class="text-xs text-slate-400" id="modalGloveSubtitle">Lateks, orqa mato va kaft o'lchamini interaktiv tarzda tekshiring</p>
+          </div>
+        </div>
+
+        <button onclick="closeHandSimulator()" class="w-9 h-9 rounded-full bg-pitch-800 hover:bg-pitch-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Interactive Glove Canvas -->
+        <div class="lg:col-span-7 flex flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-pitch-800 via-pitch-850 to-pitch-900 rounded-2xl border border-slate-800 p-4 relative min-h-[380px]">
+          
+          <!-- View switcher in modal -->
+          <div class="flex bg-pitch-950/90 backdrop-blur p-1 rounded-xl border border-slate-700 text-xs mb-3 z-10">
+            <button onclick="setModalView('palm')" id="modalBtnPalm" class="px-3.5 py-1.5 rounded-lg bg-glow-neon text-pitch-900 font-bold transition-all">
+              Oldi (Kaft Lateksi)
+            </button>
+            <button onclick="setModalView('back')" id="modalBtnBack" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white font-medium transition-all">
+              Orqasi (Mato & Zarba Zonasi)
+            </button>
+            <button onclick="setModalView('ball')" id="modalBtnBall" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white font-medium transition-all">
+              Koptok Ushlash
+            </button>
+          </div>
+
+          <!-- The SVG Render Area -->
+          <div id="modalSvgContainer" class="w-full h-72 flex items-center justify-center relative">
+            <!-- Dynamic SVG injected -->
+          </div>
+
+          <!-- Pose controls in modal -->
+          <div class="flex items-center gap-3 mt-3 z-10">
+            <button onclick="setModalPose('open')" id="modalPoseOpen" class="px-3 py-1.5 rounded-lg bg-pitch-800 border border-glow-neon text-glow-neon text-xs font-bold transition-all">
+              🖐️ Kaftni ochish (Catch)
+            </button>
+            <button onclick="setModalPose('fist')" id="modalPoseFist" class="px-3 py-1.5 rounded-lg bg-pitch-800 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-all">
+              ✊ Musht qilish (Punch Zone)
+            </button>
+          </div>
+
+          <!-- Dynamic feature overlay badges -->
+          <div id="modalSpecsOverlay" class="absolute bottom-3 right-3 text-right text-[11px] font-mono text-slate-400 bg-black/60 backdrop-blur px-2.5 py-1 rounded-lg border border-slate-800">
+            4mm Grip • Negative Cut
+          </div>
+        </div>
+
+        <!-- Right: Glove Specs, Fabric Info, and Sizing -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Price and Brand Info -->
+          <div class="flex items-baseline justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span id="modalBrandTag" class="text-xs font-bold text-glow-cyan uppercase">T1TAN</span>
+              <div id="modalPrice" class="text-2xl font-black text-white font-display">890,000 UZS</div>
+            </div>
+            <span class="px-2.5 py-1 bg-emerald-500/10 text-glow-neon text-xs font-mono font-bold rounded-lg border border-emerald-500/20">
+              ORIGINAL ASL NUSXA
+            </span>
+          </div>
+
+          <!-- Latex Spec Box -->
+          <div class="bg-pitch-800/60 border border-slate-700/80 rounded-xl p-3.5 space-y-1.5">
+            <div class="flex items-center gap-2 text-xs font-bold text-glow-neon">
+              <i data-lucide="shield" class="w-4 h-4"></i>
+              <span>Lateks Turi & Xususiyati:</span>
+            </div>
+            <p id="modalLatexDesc" class="text-xs text-slate-200">
+              4mm German Gecko Grip Latex — yuqori yopishqoqlik formulasi. Nam va quruq havoda to'p sirpanmaydi.
+            </p>
+          </div>
+
+          <!-- Fabric Spec Box -->
+          <div class="bg-pitch-800/60 border border-slate-700/80 rounded-xl p-3.5 space-y-1.5">
+            <div class="flex items-center gap-2 text-xs font-bold text-glow-cyan">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Mato & Konstruksiya:</span>
+            </div>
+            <p id="modalFabricDesc" class="text-xs text-slate-200">
+              Mechano 2.0 to'qima mato + 3D silikon zarba elementlari. Qo'l harakatini cheklamaydi, erkin nafas oladi.
+            </p>
+          </div>
+
+          <!-- Interactive Hand Size Selector & Gauge -->
+          <div class="space-y-2 pt-1">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-slate-300">Kaft o'lchamini tanlang:</span>
+              <span id="modalSizeWidthText" class="text-glow-neon font-mono text-[11px]">Kaft eni: ~8.5 sm</span>
+            </div>
+
+            <div class="grid grid-cols-5 gap-2" id="modalSizeButtons">
+              <button onclick="selectModalSize(7, '7.5 sm')" class="size-btn py-2 rounded-xl bg-pitch-800 hover:bg-pitch-700 text-xs font-bold border border-slate-700 text-white">7</button>
+              <button onclick="selectModalSize(8, '8.0 sm')" class="size-btn py-2 rounded-xl bg-pitch-800 hover:bg-pitch-700 text-xs font-bold border border-slate-700 text-white">8</button>
+              <button onclick="selectModalSize(9, '8.5 sm')" class="size-btn py-2 rounded-xl bg-glow-neon text-pitch-900 font-bold border border-glow-neon">9</button>
+              <button onclick="selectModalSize(10, '9.2 sm')" class="size-btn py-2 rounded-xl bg-pitch-800 hover:bg-pitch-700 text-xs font-bold border border-slate-700 text-white">10</button>
+              <button onclick="selectModalSize(11, '10.0 sm')" class="size-btn py-2 rounded-xl bg-pitch-800 hover:bg-pitch-700 text-xs font-bold border border-slate-700 text-white">11</button>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-2 flex gap-3">
+            <button id="modalAddToCartBtn" onclick="addModalGloveToCart()" class="flex-1 py-3 rounded-xl bg-glow-neon hover:bg-emerald-400 text-pitch-900 font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-glow-neon/20">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Savatga Qo'shish</span>
+            </button>
+            
+            <button onclick="orderViaTelegramFromModal()" class="px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors" title="Tezkor Telegram orqali xarid qilish">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Tezkor Buyurtma</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Size Guide Modal -->
+  <div id="sizeGuideModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-pitch-900 border border-slate-700 w-full max-w-lg rounded-3xl overflow-hidden p-6 relative">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2 text-white font-display text-xl font-bold">
+          <i data-lucide="ruler" class="w-5 h-5 text-glow-cyan"></i>
+          <span>Kaft O'lchamini Qanday Aniqlash Kerak?</span>
+        </div>
+        <button onclick="closeSizeGuide()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-4 text-xs text-slate-300">
+        <p>
+          Darvozabon qo'lqopining o'lchamini aniqlash uchun santimetrli o'lchov lentasini oling va bosh barmoqdan tashqari 4 ta barmog'ingiz ostidagi kaftning eng keng qismini o'lchang:
+        </p>
+
+        <div class="bg-pitch-800 p-4 rounded-xl border border-slate-700 space-y-2">
+          <div class="flex justify-between border-b border-slate-700/60 pb-1 font-semibold text-slate-200">
+            <span>Kaft aylanasi / eni</span>
+            <span>Qo'lqop o'lchami</span>
+          </div>
+          <div class="flex justify-between"><span>17.5 - 19 sm</span><strong class="text-glow-neon">O'lcham 7</strong></div>
+          <div class="flex justify-between"><span>19 - 21.5 sm</span><strong class="text-glow-neon">O'lcham 8</strong></div>
+          <div class="flex justify-between"><span>21.5 - 24 sm</span><strong class="text-glow-neon">O'lcham 9 (Standart)</strong></div>
+          <div class="flex justify-between"><span>24 - 26.5 sm</span><strong class="text-glow-neon">O'lcham 10</strong></div>
+          <div class="flex justify-between"><span>26.5 - 29 sm</span><strong class="text-glow-neon">O'lcham 11</strong></div>
+        </div>
+
+        <p class="text-[11px] text-slate-400 italic">
+          Maslahat: Agar qo'lingiz ikki o'lcham orasida bo'lsa (masalan 8.5), Negative Cut qo'lqoplar uchun kattaroq (9) o'lchamni olish tavsiya etiladi.
+        </p>
+      </div>
+
+      <button onclick="closeSizeGuide()" class="w-full py-2.5 rounded-xl bg-pitch-800 text-white font-bold text-xs hover:bg-pitch-700 border border-slate-700">Tushunarli</button>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Drawer / Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex justify-end">
+    <div class="bg-pitch-900 border-l border-slate-800 w-full max-w-md h-full flex flex-col p-6 shadow-2xl">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-glow-neon"></i>
+          <h3 class="text-lg font-bold text-white">Savatdagi Qo'lqoplar</h3>
+        </div>
+        <button onclick="closeCart()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cart Items List -->
+      <div id="cartItemsContainer" class="flex-1 overflow-y-auto py-4 space-y-4">
+        <!-- Rendered in JS -->
+      </div>
+
+      <!-- Cart Footer / Checkout -->
+      <div class="border-t border-slate-800 pt-4 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-400">Jami narx:</span>
+          <span id="cartTotalPrice" class="text-xl font-display font-black text-glow-neon">0 UZS</span>
+        </div>
+
+        <div class="space-y-2">
+          <input type="text" id="orderName" placeholder="Ismingiz va familiyangiz" class="w-full bg-pitch-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-glow-neon">
+          <input type="tel" id="orderPhone" placeholder="Telefon raqamingiz (+998)" class="w-full bg-pitch-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-glow-neon">
+          <input type="text" id="orderCity" placeholder="Shahar / Manzil (O'zbekiston bo'ylab bepul)" class="w-full bg-pitch-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-glow-neon">
+        </div>
+
+        <button onclick="submitOrder()" class="w-full py-3 rounded-xl bg-gradient-to-r from-glow-neon to-emerald-500 text-pitch-900 font-black text-xs uppercase tracking-wider hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-glow-neon/20">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>Buyurtmani Rasmiylashtirish</span>
+        </button>
+
+        <p class="text-[10px] text-slate-400 text-center">
+          Buyurtmadan so'ng mutaxassisimiz siz bilan bog'lanadi va o'lchamni yana bir bor tasdiqlaydi.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Order Success Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-pitch-800 border border-glow-neon text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
+    <i data-lucide="check-circle" class="w-5 h-5 text-glow-neon"></i>
+    <div>
+      <div id="toastTitle" class="text-xs font-bold text-white">Muvaffaqiyatli!</div>
+      <div id="toastMessage" class="text-[11px] text-slate-300">Qo'lqop savatga qo'shildi.</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-slate-800/80 py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      
+      <div class="space-y-3">
+        <div class="font-display text-2xl font-black text-white flex items-center gap-1.5">
+          <span>GLOVE</span><span class="text-glow-neon">PRO</span>
+        </div>
+        <p class="text-slate-400 leading-relaxed text-xs">
+          O'zbekistondagi professional darvozabonlar uchun 100% original qo'lqoplar do'koni. Qalbaki mahsulotlar umuman sotilmaydi.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-3">6 Original Brend</h4>
+        <ul class="space-y-1.5">
+          <li><a href="javascript:filterByBrand('T1TAN')" class="hover:text-glow-neon">T1TAN (Germaniya)</a></li>
+          <li><a href="javascript:filterByBrand('Uhlsport')" class="hover:text-glow-cyan">Uhlsport (Germaniya)</a></li>
+          <li><a href="javascript:filterByBrand('KEEPERsport')" class="hover:text-amber-400">KEEPERsport (Avstriya)</a></li>
+          <li><a href="javascript:filterByBrand('Spire')" class="hover:text-emerald-400">Spire (Contact Grip)</a></li>
+          <li><a href="javascript:filterByBrand('Nike')" class="hover:text-rose-400">Nike Goalkeeping</a></li>
+          <li><a href="javascript:filterByBrand('Adidas')" class="hover:text-blue-400">Adidas Predator & Copa</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-3">Lateks & Mato Kafolati</h4>
+        <ul class="space-y-1.5">
+          <li>• 4mm Contact & Supergrip+ Nemis lateksi</li>
+          <li>• Mechano 2.0 & Neoprene havo o'tkazuvchi matolar</li>
+          <li>• Har bir qo'lqop himoya plyonkasi bilan beriladi</li>
+          <li>• O'lcham to'g'ri kelmasa 3 kunda almashtirib berish</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold text-sm mb-3">Aloqa va Maslahat</h4>
+        <p class="mb-2">Darvozabonlik bo'yicha professional maslahat oling:</p>
+        <div class="text-slate-200 font-mono font-bold text-sm mb-2">+998 (90) 123-45-67</div>
+        <div class="text-slate-400">Telegram: @GlovePro_Darvozabon</div>
+        <div class="mt-3 text-[10px] text-slate-500">Toshkent, O'zbekiston • Butun respublika bo'ylab yetkazib berish</div>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-900 text-center text-slate-500 text-[11px]">
+      © 2026 GLOVE PRO — Barcha huquqlar himoyalangan. Original darvozabon qo'lqoplari portali.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

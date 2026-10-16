@@ -1,0 +1,82 @@
+/* Custom styles for GLOVE PRO */
+
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(17, 25, 35, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glove Card Styling */
+.glove-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glove-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(0, 255, 135, 0.15);
+  border-color: rgba(0, 255, 135, 0.3);
+}
+
+/* Brand Chip Styling */
+.brand-chip {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.brand-chip:hover {
+  transform: translateY(-2px);
+}
+
+/* Pulse Glows */
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(0, 255, 135, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(0, 255, 135, 0.6));
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Hand Simulator SVG styles */
+.hand-svg {
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hand-svg:hover {
+  transform: scale(1.02);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2432;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff87;
+}
+
+/* Range input styling */
+input[type="range"] {
+  accent-color: #00ff87;
+}
